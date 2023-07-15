@@ -1,0 +1,8 @@
+.main-container{
+    max-width: 1300px;
+    margin: 80px auto 10px auto;
+    display: flex;
+}
+.main-body{
+    display: flex;
+}

@@ -1,0 +1,32 @@
+.footer-container{
+    background-color: #232629;
+    color: #9199A1;
+    font-size: 13px;
+}
+.footer{
+    padding: 20px 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1300px;
+}
+.footer img {
+    height: 30px;
+}
+.footer h4{
+    margin-bottom: 10px;
+    color: #BABFC4;
+}
+.footer-followus-links{
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.footer-followus-links div {
+    display: flex;
+    gap: 10px;
+}
+.footer p {
+    margin-bottom: 5px;
+}

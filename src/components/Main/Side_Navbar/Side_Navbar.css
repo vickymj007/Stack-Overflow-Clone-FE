@@ -1,0 +1,29 @@
+.side-navbar{
+    min-width: 164px;
+    height: 100vh;
+    position:sticky;
+    top: 70px;
+    border-right: 0.5px solid #a8a8a8;
+    color: #6A737C;
+    font-size: 11px;
+}
+.side-navbar a {
+    text-decoration: none;
+    font-size: 13px;
+    color: #6A737C;
+}
+.side-nav-headings{
+    font-weight: 400;
+    font-size: 11px;
+}
+.side-nav-routes{
+    display: flex;
+    flex-direction: column;
+}
+.side-nav-teams{
+    padding: 5px;
+    border: 0.5px solid #a8a8a8;
+    border-collapse:collapse;
+    border-radius: 3px 0 0 3px;
+    border-right: none;
+}

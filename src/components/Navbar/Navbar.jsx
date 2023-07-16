@@ -12,10 +12,11 @@ import './Navbar.css'
 const Navbar = () => {
     const [user,setUser] = useState(false)
     const [showPopUp,setShowPopUp] = useState(false)
+    const [showNav,setShowNav] = useState(false)
   return (
     <nav>
         <div className='navbar'>
-            <Link to='/' className='nav-item nav-logo'>
+            <Link to='/main' className='nav-item nav-logo'>
                 <img src={logo} alt='Stack Overflow logo' className='logo'/>
             </Link>
             <Link to='/' className='nav-item nav-btn'>About</Link>

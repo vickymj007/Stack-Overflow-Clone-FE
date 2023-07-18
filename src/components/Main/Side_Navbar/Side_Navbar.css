@@ -1,5 +1,5 @@
 .side-navbar{
-    min-width: 164px;
+    width: 164px;
     height: 100vh;
     position:sticky;
     top: 70px;

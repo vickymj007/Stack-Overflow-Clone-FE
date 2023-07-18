@@ -1,4 +1,3 @@
-import React from 'react'
 import './Footer.css'
 import stack_overflow_Icon from '../../assets/stackoverflow-color-icon.svg'
 

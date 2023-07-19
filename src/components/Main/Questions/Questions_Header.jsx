@@ -1,9 +1,10 @@
-
 import { useState } from 'react'
 import {BsFilter} from 'react-icons/bs'
+import { useSelector } from 'react-redux'
 
 const Questions_Header = () => {
     const [openPopup, setOpenPopup] = useState(false)
+    const {data} = useSelector(state => state.questions)
 
   return (
     <header>
@@ -13,7 +14,7 @@ const Questions_Header = () => {
             <button className='ask-questions-btn btn'>Ask Question</button>
             </div>
             <div>
-            <p>0 questions</p>
+            <p>{data.length} questions</p>
             <button onClick={()=>setOpenPopup(!openPopup)} className='filter-btn btn'><span><BsFilter/></span>Filter</button>
             </div>
         </div>

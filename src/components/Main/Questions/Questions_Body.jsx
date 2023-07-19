@@ -16,7 +16,7 @@ const Questions_Body = () => {
                 <p>{data.views} views</p>
             </div>
             <div className='question-info'>
-                <Link to='#'>{data.title}</Link>
+                <Link to={`/questions/info/${data.id}`}>{data.title}</Link>
                 <p>{data.question.substring(1,193)}</p>
                 <div>
                     <div>

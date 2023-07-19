@@ -7,14 +7,18 @@ import Tags from '../Tags/Tags'
 import Users from '../Users/Users'
 import Companies from '../Companies/Companies'
 import Questions from '../Questions/Questions'
+import QuestionInfo from '../Questions/QuestionInfo'
 
 const Main = () => {
   return (
     <div className='main-container'>
         <Side_Navbar/>
         <Routes>
-          <Route index element={<Body_Main/>}/>
-          <Route path='/questions' element={<Questions/>}/>
+          <Route path='/' element={<Body_Main/>}/>
+          <Route path='/questions'>
+            <Route index={true} element={<Questions/>}/>
+            <Route index={false} path='info/:question_id' element={<QuestionInfo/>}/>
+          </Route>
           <Route path='/tags' element={<Tags/>}/>
           <Route path='/users' element={<Users/>}/>
           <Route path='/companies' element={<Companies/>}/>

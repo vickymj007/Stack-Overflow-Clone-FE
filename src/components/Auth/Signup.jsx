@@ -2,20 +2,53 @@ import React, { useState } from 'react'
 import GoogleBtn from './GoogleBtn'
 import GithubBtn from './GithubBtn'
 import FacebookBtn from './FacebookBtn'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {HiMiniTrophy} from 'react-icons/hi2'
 import {AiFillTags} from 'react-icons/ai'
 import {BsArrowsExpand} from 'react-icons/bs'
 import {RiQuestionnaireFill} from 'react-icons/ri'
 import ReCAPTCHA from 'react-google-recaptcha'
+import axios from 'axios'
+import { nanoid } from '@reduxjs/toolkit'
+
 
 const Signup = () => {
-
-    const [displayName,setDisplayName] = useState('')
+    const navigate = useNavigate()
+    const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+    const [verified,setVerified] = useState(false)
 
     const onChange = (value)=>{
+      if(value){
+        setVerified(true)
+      }
+    }
+
+    const handleSubmit = (e)=>{
+      e.preventDefault()
+      console.log("clicked");
+
+      const newUser = {
+        id:nanoid(),
+        name,
+        email,
+        password
+      }
+
+      axios.post("http://localhost:5000/user",newUser)
+      .then(response=> response.data)
+      .then(data=>{
+        if(!data){
+          throw Error("Unable to create new user")
+        }
+        alert("Account created successfully, Login to continue")
+        navigate('/login')
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+
     }
 
   return (
@@ -36,18 +69,33 @@ const Signup = () => {
                 <GithubBtn/>
                 <FacebookBtn/>
             </div>
-            <form className='login-form'>
+            <form className='login-form' onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor='display-name'>Display name</label> <br />
-                    <input type="text" id='display-name' value={displayName}/>
+                    <input 
+                      type="text" 
+                      id='display-name' 
+                      value={name}
+                      onChange={(e)=>setName(e.target.value)}  
+                    />
                 </div>
                 <div>
                     <label htmlFor='email'>Email</label> <br />
-                    <input type="email" id='email' value={email}/>
+                    <input 
+                      type="email" 
+                      id='email' 
+                      value={email}
+                      onChange={(e)=>setEmail(e.target.value)}  
+                    />
                 </div>
                 <div>
                     <label htmlFor='password'>Password</label>
-                    <input type='password' id='password' value={password}/>
+                    <input 
+                      type='password' 
+                      id='password' 
+                      value={password}
+                      onChange={(e)=>setPassword(e.target.value)}
+                    />
                 </div>
                 <p>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</p>
                 <ReCAPTCHA
@@ -59,7 +107,11 @@ const Signup = () => {
                   <input type='checkbox'/>
                   <span>Opt-in to receive occasional product updates, user research invitations, company announcements, and digests.</span>
                 </div>
-                <input type='submit' value="Sign up"/>
+                <input 
+                  type='submit' 
+                  value="Sign up"
+                  disabled={!verified}
+                />
                 <p>By clicking “Sign up”, you agree to our terms of service and acknowledge that you have read and understand our privacy policy and code of conduct.</p>
             </form>
             <div>

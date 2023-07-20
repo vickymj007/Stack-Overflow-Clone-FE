@@ -4,10 +4,14 @@ import Main from './components/Main/Content/Main';
 import Footer from './components/Footer/Footer';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
-import LandingPage from './components/LandingPage/LandingPage';
+import AskQuestionForm from './components/Main/Ask_question_form/AskQuestionForm';
+import { useSelector } from 'react-redux';
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -16,8 +20,10 @@ function App() {
           <Route path='/*' element={<Main/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<Signup/>}/>
+          <Route path='/ask-question' element={<AskQuestionForm/>}/>
         </Routes>
         <Footer/>
+        <ToastContainer/>
       </BrowserRouter>
     </div>
   );

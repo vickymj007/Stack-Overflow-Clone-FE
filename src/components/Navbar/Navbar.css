@@ -62,6 +62,7 @@ nav{
     left:10px;
 }
 .navbar .btn{
+    text-decoration: none;
     margin-right: 5px;
     font-size: 13px;
     padding: 8px 10.4px;
@@ -112,6 +113,7 @@ nav{
     position: absolute;
     right: 0;
     top:60px;
+    background-color: #FFFFFF;
     overflow: hidden;
 }
 .logout-popup img{

@@ -5,15 +5,14 @@ import { changePage, setContetntPerPage } from '../../../redux/features/Question
 const Questions_Footer = () => {
     const {data,currentPage, contentPerPage} = useSelector(state => state.questions)
     const dispatch = useDispatch()
-    const pageCount = Math.ceil(data.length / contentPerPage)
+    const pageCount = data? Math.ceil(data.length/ contentPerPage): 1
 
     const handlePageClick = (event) => {
       dispatch(changePage(event.selected))
     };
 
-
-  return (
-    <div className='questions-footer'>
+    {return data?
+      (<div className='questions-footer'>
         <div>
           <ReactPaginate
             breakLabel='...'
@@ -31,8 +30,10 @@ const Questions_Footer = () => {
             <li onClick={()=>dispatch(setContetntPerPage(15))}>15</li>
             <p>per page</p>
         </ul>
-    </div>
-  )
+    </div>)
+    :
+    (<div>Loading</div>)
+    }
 }
 
 export default Questions_Footer

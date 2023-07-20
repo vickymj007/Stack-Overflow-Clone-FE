@@ -1,14 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {data} from '../../components/Main/Questions/data'
 
 const questionsSlice= createSlice({
     name:'questions',
     initialState:{
-        data,
+        data:null,
         currentPage:0,
         contentPerPage:5
     },
    reducers:{
+    setData:(state,action)=>{
+        state.data = action.payload;
+    },
+    addData:(state,action)=>{
+        state.data = [...state.data, action.payload]
+    },
     changePage : (state,action)=>{
         state.currentPage = action.payload
     },
@@ -18,5 +23,5 @@ const questionsSlice= createSlice({
    }
 
 })
-export const {changePage, setContetntPerPage} = questionsSlice.actions
+export const {setData, addData, changePage, setContetntPerPage} = questionsSlice.actions
 export default questionsSlice.reducer

@@ -7,16 +7,8 @@ const Body_Main = () => {
     <div className='main-body'>
       <div className='main-body-container'>
         <Content/>
-        <Content/>
-        <Content/>
-        <Content/>
-        <Content/>
-        <Content/>
-        <Content/>
       </div>
-      <div className='main-features-container'>
-        <Features_Main/>
-      </div>
+       <Features_Main/>
     </div>
   )
 }

@@ -1,0 +1,125 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "title": "1What is Fumctional Component in React JS",
+      "question": "I am trying to build an app for a client to detect some juice bottles, the problem I have is that there are 11 flavors and some sleeves look pretty close, Vuforia is mixing everything no matter how I ...",
+      "tags": [
+        "javascript",
+        "react",
+        "html"
+      ],
+      "votes": 0,
+      "views": 0,
+      "createdAt": "Tue Jul 18 2023 22:17:14 GMT+0530 (India Standard Time)",
+      "user": {
+        "name": "Vignesh",
+        "user_id": "1",
+        "email": "vicky@gmail.com"
+      },
+      "answers": [
+        {
+          "id":"123",
+          "user": "vicky",
+          "answer": "You are doing it wrong",
+          "votes": 0
+        },
+        {
+          "id":"1234",
+          "user": "Kalai",
+          "answer": "You are doing it wrong because this is not how you do it, You have do it with more passion",
+          "votes": 0
+        }
+      ]
+    },
+    {
+      "id": "ouYhmOqgOHhEy7Yl75Es7",
+      "title": "Testing question",
+      "question": "Testing if the add question function is working or not",
+      "tags": [
+        "html",
+        "css",
+        "javascript"
+      ],
+      "votes": 0,
+      "views": 0,
+      "user": null,
+      "createdAt": "2023-07-20T09:51:11.925Z",
+      "answers": []
+    },
+    {
+      "id": "tSBvCv_im64ehhUIQKVu5",
+      "title": "Testing question",
+      "question": "Testing if the add question function is working or not",
+      "tags": [
+        "html",
+        "css",
+        "javascript"
+      ],
+      "votes": 0,
+      "views": 0,
+      "user": null,
+      "createdAt": "2023-07-20T09:53:17.118Z",
+      "answers": []
+    },
+    {
+      "id": "aYRp2-EfMMaFYTNjgWmCP",
+      "title": "fffffffffffffff",
+      "question": "ffffffffffffffffffffffff",
+      "tags": [
+        "fgf"
+      ],
+      "votes": 0,
+      "views": 0,
+      "user": null,
+      "createdAt": "2023-07-20T09:54:43.530Z",
+      "answers": []
+    },
+    {
+      "id": "Xmrwc7zndsjzRSDNvAPGN",
+      "title": "fffffffffffffffffff",
+      "question": "gggggggggggggggggggggg",
+      "tags": [
+        "javascript",
+        "html",
+        "css"
+      ],
+      "votes": 0,
+      "views": 0,
+      "user": {
+        "id": "1",
+        "name": "Vignesh",
+        "email": "vicky@gmail.com",
+        "password": "vicky123"
+      },
+      "createdAt": "2023-07-20T09:55:52.974Z",
+      "answers": []
+    }
+  ],
+  "user": [
+    {
+      "id": "1",
+      "name": "Vignesh",
+      "email": "vicky@gmail.com",
+      "password": "vicky123"
+    },
+    {
+      "id": "2",
+      "name": "Mani",
+      "email": "mani@gmail.com",
+      "password": "Mani@123"
+    },
+    {
+      "id": "3",
+      "name": "Diva",
+      "email": "diva@gmail.com",
+      "password": "Diva@123"
+    },
+    {
+      "id": "JRr7zk65AFfYeEg4d5zaH",
+      "name": "Tom",
+      "email": "tom@gmail.com",
+      "password": "Tom@123"
+    }
+  ]
+}

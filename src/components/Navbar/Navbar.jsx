@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
 import logo from '../../assets/logo-stackoverflow.png'
 import search_icon from '../../assets/searchs_icon.png'
 import inbox_logo from '../../assets/inbox-log.png'
@@ -8,10 +9,18 @@ import help_logo from '../../assets/help_logo.png'
 import list_logo from '../../assets/list-icon.svg'
 import stack_overflow_icon from '../../assets/stackoverflow-color-icon.svg'
 import './Navbar.css'
+import { logOut } from '../../redux/features/userSlice'
 
 const Navbar = () => {
-    const [user,setUser] = useState(false)
+    const {user} = useSelector(state => state.user)
+    const dispatch = useDispatch()
+
     const [showPopUp,setShowPopUp] = useState(false)
+
+    const handleLogout = ()=>{
+        dispatch(logOut())
+    }
+
   return (
     <nav>
         <div className='navbar'>
@@ -28,7 +37,7 @@ const Navbar = () => {
             {user ? 
                 <div className='user-login-info'>
                     <div className='nav-user-links'>
-                        <p>V</p> {/* {user.name.slice(0,1)} */}
+                        <p>{user.name.slice(0,1)}</p> 
                     </div>
                     <div className='nav-user-links'>
                         <img src={inbox_logo} alt='Inbox Logo' className='icons'/>
@@ -51,7 +60,9 @@ const Navbar = () => {
                                 <div className='popup-logout-btns'>
                                     <p>help</p>
                                     <p>chat</p>
-                                    <p onClick={()=>setUser(false)}>log out</p>
+                                    <p 
+                                        onClick={handleLogout}
+                                    >log out</p>
                                 </div>
                             </div>
                         </div>}
@@ -60,11 +71,14 @@ const Navbar = () => {
             :
             // <Link to='/auth' className='nav-item nav-links'>Login</Link>
                 <div className='login-links'>
-                    <button 
+                    <Link 
                         className='btn login-btn'
-                        onClick={()=>setUser(true)}    
-                    >Log in</button>
-                    <button className='btn signup-btn'>Sign up</button>
+                        to='/login'
+                    >Log in</Link>
+                    <Link 
+                        to='/signup'
+                        className='btn signup-btn'
+                    >Sign up</Link>
                 </div>
             }
         </div>

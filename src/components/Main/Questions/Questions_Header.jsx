@@ -1,20 +1,22 @@
 import { useState } from 'react'
 import {BsFilter} from 'react-icons/bs'
 import { useSelector } from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const Questions_Header = () => {
     const [openPopup, setOpenPopup] = useState(false)
     const {data} = useSelector(state => state.questions)
+    const {user} = useSelector(state => state.user)
 
   return (
     <header>
         <div className='questions-header'>
             <div>
             <h4>All Questions</h4>
-            <button className='ask-questions-btn btn'>Ask Question</button>
+            <Link to={user?'/ask-question':'/login'}className='ask-questions-btn btn'>Ask Question</Link>
             </div>
             <div>
-            <p>{data.length} questions</p>
+            <p>{data&&data.length} questions</p>
             <button onClick={()=>setOpenPopup(!openPopup)} className='filter-btn btn'><span><BsFilter/></span>Filter</button>
             </div>
         </div>

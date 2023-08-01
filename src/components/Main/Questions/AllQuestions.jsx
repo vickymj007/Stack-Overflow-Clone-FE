@@ -1,14 +1,14 @@
 import React from 'react'
-import Questions_Body from './Questions_Body'
-import Questions_Footer from './Questions_Footer'
-import Questions_Header from './Questions_Header'
+import QuestionsBody from './QuestionsBody'
+import QuestionsFooter from './QuestionsFooter'
+import QuestionsHeader from './QuestionsHeader'
 
 const AllQuestions = () => {
   return (
     <div className='questions-page'>        
-        <Questions_Header/>
-        <Questions_Body/>
-        <Questions_Footer/>
+        <QuestionsHeader/>
+        <QuestionsBody/>
+        <QuestionsFooter/>
     </div>
   )
 }

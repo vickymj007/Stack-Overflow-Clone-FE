@@ -1,16 +1,16 @@
 import React from 'react'
 import Content from './Content'
-import Features_Main from '../Features/Features_Main'
+import FeaturesMain from '../Features/FeaturesMain'
 
-const Body_Main = () => {
+const BodyMain = () => {
   return (
     <div className='main-body'>
       <div className='main-body-container'>
         <Content/>
       </div>
-       <Features_Main/>
+       <FeaturesMain/>
     </div>
   )
 }
 
-export default Body_Main
+export default BodyMain

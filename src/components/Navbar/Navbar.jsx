@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import logo from '../../assets/logo-stackoverflow.png'
@@ -9,16 +9,24 @@ import help_logo from '../../assets/help_logo.png'
 import list_logo from '../../assets/list-icon.svg'
 import stack_overflow_icon from '../../assets/stackoverflow-color-icon.svg'
 import './Navbar.css'
-import { logOut } from '../../redux/features/userSlice'
+import { logOut, login } from '../../redux/features/userSlice'
 
 const Navbar = () => {
-    const {user} = useSelector(state => state.user)
     const dispatch = useDispatch()
+    const {user} = useSelector(state => state.user)
+
+    useEffect(()=>{
+        const isUser =JSON.parse(localStorage.getItem('user'))
+        if(isUser){
+            dispatch(login(isUser))
+        }
+    },[dispatch])
 
     const [showPopUp,setShowPopUp] = useState(false)
 
     const handleLogout = ()=>{
         dispatch(logOut())
+        localStorage.removeItem('user')
     }
 
   return (

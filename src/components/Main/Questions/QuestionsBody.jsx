@@ -5,24 +5,33 @@ import {Link} from "react-router-dom"
 import {useSelector}from 'react-redux'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import { setData } from '../../../redux/features/QuestionsSlice'
+import { setData, addViews } from '../../../redux/features/QuestionsSlice.js'
 
 
-const Questions_Body = () => {
-    const date =(date) => formatDistanceToNow(new Date(date),{addSuffix:true,includeSeconds:true})
+const QuestionsBody = () => {
     const {data,currentPage,contentPerPage} = useSelector(state => state.questions)
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        setTimeout(()=>{
-            axios.get("http://localhost:5000/data")
-            .then(response => response.data)
-            .then(data=> {
-                dispatch(setData(data))
-            })
-            .catch(error=>console.log(error.message))
-        },500)
-    },[])
+        axios.get("http://localhost:9000/api/questions")
+        .then(response => response.data)
+        .then(data=> {
+            dispatch(setData(data))
+        })
+        .catch(error=>console.log(error.message))
+    },[dispatch])
+
+    const incViews = (id)=>{
+        axios.put(`http://localhost:9000/api/questions/${id}`,{
+            addViews:true,
+            type:"ques"
+        })
+        .then(response => response.data)
+        .then(data=>{
+            dispatch(addViews({id}))
+        })
+        .catch(error=>console.log(error))
+    }
 
 
     const renderData = !data? "Loading": data.slice(contentPerPage * currentPage, contentPerPage*currentPage+contentPerPage).map((data,index)=>(
@@ -33,14 +42,14 @@ const Questions_Body = () => {
                 <p>{data.views} views</p>
             </div>
             <div className='question-info'>
-                <Link to={`/questions/info/${data.id}`}>{data.title}</Link>
+                <Link onClick={()=>incViews(data._id)} to={`/questions/info/${data._id}`}>{data.title}</Link>
                 <p>{data.question.substring(1,193)}</p>
                 <div>
                     <div>
                         {data.tags.map(tag=>(<p key={nanoid()}>{tag}</p>))}
                     </div>
-                    <p>by <strong>{data.user_name} </strong>
-                    {date(data.createdAt)}</p>
+                    <p>by <strong>{data.askedBy.name} </strong>
+                    {formatDistanceToNow(new Date(data.createdAt),{addSuffix:true,includeSeconds:true})}</p>
                 </div>
             </div>
         </div>
@@ -53,4 +62,4 @@ const Questions_Body = () => {
   )
 }
 
-export default Questions_Body
+export default QuestionsBody

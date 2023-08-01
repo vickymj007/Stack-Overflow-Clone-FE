@@ -2,8 +2,8 @@ import ReactPaginate from 'react-paginate'
 import { useDispatch, useSelector } from 'react-redux'
 import { changePage, setContetntPerPage } from '../../../redux/features/QuestionsSlice'
 
-const Questions_Footer = () => {
-    const {data,currentPage, contentPerPage} = useSelector(state => state.questions)
+const QuestionsFooter = () => {
+    const {data, contentPerPage} = useSelector(state => state.questions)
     const dispatch = useDispatch()
     const pageCount = data? Math.ceil(data.length/ contentPerPage): 1
 
@@ -32,8 +32,8 @@ const Questions_Footer = () => {
         </ul>
     </div>)
     :
-    (<div>Loading</div>)
+    (<div></div>)
     }
 }
 
-export default Questions_Footer
+export default QuestionsFooter

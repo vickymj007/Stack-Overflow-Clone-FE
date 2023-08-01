@@ -1,6 +1,5 @@
-import React from 'react'
-import Body_Main from './Body_Main'
-import Side_Navbar from '../Side_Navbar/Side_Navbar'
+import BodyMain from './BodyMain'
+import SideNavbar from '../Side_Navbar/SideNavbar'
 import './Main.css'
 import { Routes,Route } from 'react-router-dom'
 import Tags from '../Tags/Tags'
@@ -10,11 +9,12 @@ import Questions from '../Questions/Questions'
 import QuestionInfo from '../Questions/QuestionInfo'
 
 const Main = () => {
+
   return (
     <div className='main-container'>
-        <Side_Navbar/>
+        <SideNavbar/>
         <Routes>
-          <Route path='/' element={<Body_Main/>}/>
+          <Route path='/' element={<BodyMain/>}/>
           <Route path='/questions'>
             <Route index={true} element={<Questions/>}/>
             <Route index={false} path='info/:question_id' element={<QuestionInfo/>}/>

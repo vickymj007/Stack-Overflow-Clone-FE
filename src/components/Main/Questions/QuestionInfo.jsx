@@ -1,20 +1,35 @@
-import React, { useState } from 'react'
-import Features_Main from '../Features/Features_Main'
+import React, { useEffect, useState } from 'react'
+import Features_Main from '../Features/FeaturesMain'
 import {Link, useNavigate, useParams} from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {BiSolidDownArrow, BiSolidUpArrow} from 'react-icons/bi'
 import {ToastContainer, toast} from 'react-toastify'
+import { formatDistanceToNow } from 'date-fns'
 import axios from 'axios'
+import { changeVotes, setData, updateAnswer } from '../../../redux/features/QuestionsSlice'
+
 
 const QuestionInfo = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+
+  useEffect(()=>{
+    axios.get("http://localhost:9000/api/questions")
+    .then(response => response.data)
+    .then(data=> {
+        dispatch(setData(data))
+    })
+    .catch(error=>console.log(error.message))
+},[dispatch])
 
   const {question_id} = useParams()
   const {data} = useSelector(state => state.questions)
   const {user} = useSelector(state => state.user)
   const [answer,setAnswer]= useState('')
 
-  const currentQuestion = data.find(question => question.id === question_id)
+  let currentQuestion = data ? data.find(question => question._id === question_id):undefined
+
 
   const handleSubmit = (e)=>{
     e.preventDefault()
@@ -24,21 +39,52 @@ const QuestionInfo = () => {
       return
     }
     const newAnswer = {
-      id:user.id,
+      id: user.id,
       answer,
-      user: user.name,
-      votes:0
+      votes:0,
+      user: user.name
     }
-    console.log(newAnswer);
+    axios.patch(`http://localhost:9000/api/questions/${question_id}`,newAnswer)
+    .then(response => response.data)
+    .then(data=>{
+      dispatch(updateAnswer({id:question_id,answer:data}))
+      setAnswer("")
+    })
+    .catch(error =>{
+      console.log(error);
+    })
   }
-  return (
+
+  const handleClick = (action,type,id,ans_id)=>{
+    axios.put(`http://localhost:9000/api/questions/${id}`,{
+      addViews:false,
+      incVote: action === "+",
+      decVote: action === "-",
+      type,
+      ans_id
+    })
+    .then(response => response.data)
+    .then(data=>{
+      dispatch(changeVotes({
+        id,
+        inc:action === "+",
+        type,
+        ans_id
+      }))
+    })
+    .catch(error =>console.log(error.message))
+  }
+
+
+  return currentQuestion ?
+   (
     <div className='question-info-page'>
       <div className='question-info-header'>
         <div>
           <h4>{currentQuestion.title}</h4>
           <div>
-            <p>Asked Today</p>
-            <p>Modified Today</p>
+            <p>Asked {formatDistanceToNow(new Date(currentQuestion.createdAt),{addSuffix:true})}</p>
+            <p>Modified {formatDistanceToNow(new Date(currentQuestion.updatedAt),{addSuffix:true})}</p>
             <p>Viewed {currentQuestion.views}</p>
           </div>
         </div>
@@ -48,9 +94,9 @@ const QuestionInfo = () => {
         <div className='question-info-container'>
           <div className='question-details-container'>
             <div>
-              <span><BiSolidUpArrow/></span>
-              <p>0</p>
-              <span><BiSolidDownArrow/></span>
+              <span onClick={()=>handleClick("+", "ques",currentQuestion._id)}><BiSolidUpArrow/></span>
+              <p>{currentQuestion.votes}</p>
+              <span onClick={()=>handleClick("-", "ques",currentQuestion._id)}><BiSolidDownArrow/></span>
             </div>
             <div>
               <section>
@@ -62,10 +108,10 @@ const QuestionInfo = () => {
                 ))}
               </div>
               <div className='info-card'>
-                <p>asked 26 minutes ago</p>
+                <p>asked {formatDistanceToNow(new Date(currentQuestion.createdAt),{addSuffix:true,includeSeconds:true})}</p>
                 <div>
-                  <p>V</p>
-                  <p>{currentQuestion.user_name}</p>
+                  <p>{currentQuestion.askedBy.name.slice(0,1)}</p>
+                  <p>{currentQuestion.askedBy.name}</p>
                 </div>
               </div>
             </div>
@@ -74,15 +120,15 @@ const QuestionInfo = () => {
             <h4>{currentQuestion.answers.length} Answer</h4>
               {currentQuestion.answers?
                 <div className='answer-details-container'>
-                  {currentQuestion.answers.map(ans =>(
-                  <div className='answer-card'>
+                  {currentQuestion.answers.map((ans) =>(
+                  <div className='answer-card' key={ans.unique_id}>
                     <div>
-                      <span><BiSolidUpArrow/></span>
-                      <p>0</p>
-                      <span><BiSolidDownArrow/></span>
+                      <span onClick={()=>handleClick("+","ans",currentQuestion._id,ans.unique_id)}><BiSolidUpArrow/></span>
+                      <p>{ans.votes}</p>
+                      <span onClick={()=>handleClick("-","ans",currentQuestion._id,ans.unique_id)}><BiSolidDownArrow/></span>
                     </div>
                     <div className='user-answer'>
-                      <p>{ans.answer} <strong>-{ans.user}</strong> 7 minutes ago</p>
+                      <p>{ans.answer} <strong>-{ans.user}</strong> {formatDistanceToNow(new Date(ans.createdAt),{addSuffix:true,includeSeconds:true})}</p>
                     </div>
                   </div>
                   ))}
@@ -109,6 +155,9 @@ const QuestionInfo = () => {
         <Features_Main/>
       </div>
     </div>
+  ):
+  (
+    <div style={{textAlign:"center"}}>Loading...</div>
   )
 }
 

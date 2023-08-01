@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
 import './AskQuestions.css'
-import { nanoid } from '@reduxjs/toolkit'
 import { useSelector, useDispatch } from 'react-redux'
 import { addData } from '../../../redux/features/QuestionsSlice'
 import { Navigate, useNavigate } from 'react-router-dom'
@@ -21,25 +20,23 @@ const AskQuestionForm = () => {
 
     const handleSubmit = ()=>{
         const newQuestion = {
-            id:nanoid(),
             title,
             question:details,
             tags: tags.split(" "),
-            votes:0,
-            views:0,
-            user,
-            createdAt: new Date,
+            askedBy:user,
             answers:[]
         }
-        axios.post("http://localhost:5000/data",newQuestion)
+        axios.post("http://localhost:9000/api/questions",newQuestion)
         .then(response => response.data)
         .then(data =>{
             if(!data){
                 throw Error("Unable to add question")
             }
-
             dispatch(addData(data))
             navigate('/questions')
+        })
+        .catch(error =>{
+            console.log(error);
         })
     }
 

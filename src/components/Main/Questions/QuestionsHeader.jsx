@@ -3,7 +3,7 @@ import {BsFilter} from 'react-icons/bs'
 import { useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
 
-const Questions_Header = () => {
+const QuestionsHeader = () => {
     const [openPopup, setOpenPopup] = useState(false)
     const {data} = useSelector(state => state.questions)
     const {user} = useSelector(state => state.user)
@@ -50,4 +50,4 @@ const Questions_Header = () => {
   )
 }
 
-export default Questions_Header
+export default QuestionsHeader

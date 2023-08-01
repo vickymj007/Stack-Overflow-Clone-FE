@@ -1,11 +1,11 @@
 import React from 'react'
-import './Side_Navbar.css'
+import './SideNavbar.css'
 import { Link, NavLink } from 'react-router-dom'
 import teams_img from '../../../assets/teams-illo-free-sidebar-promo.svg'
 import {BiWorld, BiSolidErrorCircle} from 'react-icons/bi'
 import {TiStarburst} from 'react-icons/ti'
 
-const Navbar_Main = () => {
+const NavbarMain = () => {
   return (
     <div className='side-navbar'>
       <div className='side-nav-routes'>
@@ -31,4 +31,4 @@ const Navbar_Main = () => {
   )
 }
   
-export default Navbar_Main
+export default NavbarMain

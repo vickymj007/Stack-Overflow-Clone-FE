@@ -9,7 +9,6 @@ import {BsArrowsExpand} from 'react-icons/bs'
 import {RiQuestionnaireFill} from 'react-icons/ri'
 import ReCAPTCHA from 'react-google-recaptcha'
 import axios from 'axios'
-import { nanoid } from '@reduxjs/toolkit'
 
 
 const Signup = () => {
@@ -30,13 +29,12 @@ const Signup = () => {
       console.log("clicked");
 
       const newUser = {
-        id:nanoid(),
         name,
         email,
         password
       }
 
-      axios.post("http://localhost:5000/user",newUser)
+      axios.post("http://localhost:9000/api/users/signup",newUser)
       .then(response=> response.data)
       .then(data=>{
         if(!data){

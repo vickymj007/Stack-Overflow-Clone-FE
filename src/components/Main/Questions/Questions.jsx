@@ -1,4 +1,4 @@
-import Features_Main from '../Features/Features_Main'
+import FeaturesMain from '../Features/FeaturesMain'
 import './QuestionsPage.css'
 import AllQuestions from './AllQuestions'
 
@@ -9,7 +9,7 @@ const Questions = () => {
   return (
     <>
       <AllQuestions/>
-      <Features_Main/>
+      <FeaturesMain/>
     </>
   )
 }

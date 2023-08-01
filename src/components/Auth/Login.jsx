@@ -8,6 +8,7 @@ import FacebookBtn from './FacebookBtn'
 import axios from 'axios'
 import { login } from '../../redux/features/userSlice'
 import { useDispatch } from 'react-redux'
+import {toast} from 'react-toastify'
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -20,21 +21,17 @@ const Login = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        axios.get("http://localhost:5000/user")
+        axios.post("http://localhost:9000/api/users/login",{email,password})
         .then(response => response.data)
         .then(data =>{
-            const user = data.find(person=> person.email=== email) 
-            if(!user){
-                throw Error("You dont have an account, Please Signup")
-            }
-            if(user.password !== password){
-                throw Error("Password is incorrect")
-            }
-            dispatch(login(user))
+            toast.success("Successfully logged in")
+            dispatch(login(data))
+            localStorage.setItem('user', JSON.stringify(data))
             navigate('/questions')
         })
         .catch(error=>{
-            alert(error.message)
+            toast.error(error.response.data.msg)
+            console.log(error);
         })
     }
 

@@ -5,7 +5,6 @@ import Footer from './components/Footer/Footer';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import AskQuestionForm from './components/Main/Ask_question_form/AskQuestionForm';
-import { useSelector } from 'react-redux';
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 

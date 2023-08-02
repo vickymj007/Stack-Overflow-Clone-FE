@@ -17,9 +17,9 @@ nav{
     height: 28px;
     padding: 5px 0;
 }
-.icons{
+.user-login-info > .icons{
     cursor: pointer;
-    height: 20px;
+    width: 15px;
 }
 .navbar{
     height: 100%;
@@ -60,6 +60,7 @@ nav{
     position: absolute;
     top:7px;
     left:10px;
+    width: 20px;
 }
 .navbar .btn{
     text-decoration: none;
@@ -88,19 +89,22 @@ nav{
 
 .user-login-info{
     display: flex;
-    align-items: center;
 }
 .nav-user-links{
+    display: flex;
+    align-items: center;
     position: relative;
-    padding: 14px 8px;
+    padding: 8px 8px;
     cursor: pointer;
 }
 .nav-user-links >p {
     font-size: 18px;
     border-radius: 5px;
     background-color: #a8a8a8;
-    padding: 0 10px;
     margin: 0;
+}
+.nav-user-links >img:nth-child(1){
+    width: 30px;
 }
 .nav-item:hover,
 .nav-user-links:hover{

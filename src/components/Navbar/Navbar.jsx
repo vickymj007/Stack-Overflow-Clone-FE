@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import logo from '../../assets/logo-stackoverflow.png'
 import search_icon from '../../assets/searchs_icon.png'
-import inbox_logo from '../../assets/inbox-log.png'
-import trophy_logo from '../../assets/trophy-icon.png'
-import help_logo from '../../assets/help_logo.png'
-import list_logo from '../../assets/list-icon.svg'
 import stack_overflow_icon from '../../assets/stackoverflow-color-icon.svg'
 import './Navbar.css'
 import { logOut, login } from '../../redux/features/userSlice'
+import {FaTrophy} from 'react-icons/fa'
+import {BiSolidHelpCircle} from 'react-icons/bi'
+import {FaInbox} from 'react-icons/fa'
+import {GiHamburgerMenu} from 'react-icons/gi'
+import {avatar} from '../Main/Users/avatar.js'
 
 const Navbar = () => {
     const dispatch = useDispatch()
@@ -45,19 +46,19 @@ const Navbar = () => {
             {user ? 
                 <div className='user-login-info'>
                     <div className='nav-user-links'>
-                        <p>{user.name.slice(0,1)}</p> 
+                        <img src={avatar[user.avatar_id+1]} alt="Avatar" />
                     </div>
                     <div className='nav-user-links'>
-                        <img src={inbox_logo} alt='Inbox Logo' className='icons'/>
+                        <FaInbox/>
                     </div>
                     <div className='nav-user-links'>
-                        <img src={trophy_logo} alt='Acheivements Logo' className='icons'/>
+                        <FaTrophy/>
                     </div>
                     <div className='nav-user-links'>
-                        <img src={help_logo} alt='Help Logo' className='icons'/>
+                        <BiSolidHelpCircle/>
                     </div>
                     <div className='nav-user-links' onClick={()=>setShowPopUp(!showPopUp)}>
-                        <img src={list_logo} alt='List Logo' className='icons'/>
+                        <span><GiHamburgerMenu/></span>
                         {showPopUp && 
                         <div className='logout-popup'>
                             <div className='logout-popup-head'>

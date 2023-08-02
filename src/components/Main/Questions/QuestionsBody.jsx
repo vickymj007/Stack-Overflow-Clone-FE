@@ -6,6 +6,7 @@ import {useSelector}from 'react-redux'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setData, addViews } from '../../../redux/features/QuestionsSlice.js'
+import {avatar} from '../Users/avatar.js'
 
 
 const QuestionsBody = () => {
@@ -33,6 +34,7 @@ const QuestionsBody = () => {
         .catch(error=>console.log(error))
     }
 
+    
 
     const renderData = !data? "Loading": data.slice(contentPerPage * currentPage, contentPerPage*currentPage+contentPerPage).map((data,index)=>(
         <div key={index} className='question-card'>
@@ -43,12 +45,12 @@ const QuestionsBody = () => {
             </div>
             <div className='question-info'>
                 <Link onClick={()=>incViews(data._id)} to={`/questions/info/${data._id}`}>{data.title}</Link>
-                <p>{data.question.substring(1,193)}</p>
+                <p>{data.question.substring(0,193)}</p>
                 <div>
                     <div>
                         {data.tags.map(tag=>(<p key={nanoid()}>{tag}</p>))}
                     </div>
-                    <p>by <strong>{data.askedBy.name} </strong>
+                    <p><img src={avatar[data.askedBy.avatar_id+1]} alt='Avatar'/> <strong>{data.askedBy.name} </strong>
                     {formatDistanceToNow(new Date(data.createdAt),{addSuffix:true,includeSeconds:true})}</p>
                 </div>
             </div>

@@ -117,7 +117,12 @@
 }
 .question-info >div:nth-child(3){
     display: flex;
+    align-items: center;
+    gap: 15px;
     justify-content: space-between;
+}
+.question-info{
+    width: 100%;
 }
 .question-info >div:nth-child(3) > div,
 .questions-tags {
@@ -134,6 +139,14 @@
 }
 .question-info >p:nth-child(2){
     margin-bottom: 8px;
+}
+.question-info >div:nth-child(3) strong{
+    color: #0A95FF;
+    font-weight: 400;
+}
+.question-info >div:nth-child(3) img{
+    width: 18px;
+    vertical-align: sub;
 }
 .questions-footer{
     display: flex;

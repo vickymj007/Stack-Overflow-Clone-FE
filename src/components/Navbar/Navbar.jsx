@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import logo from '../../assets/logo-stackoverflow.png'
 import search_icon from '../../assets/searchs_icon.png'
@@ -14,6 +14,7 @@ import {avatar} from '../Main/Users/avatar.js'
 
 const Navbar = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {user} = useSelector(state => state.user)
 
     useEffect(()=>{
@@ -28,6 +29,7 @@ const Navbar = () => {
     const handleLogout = ()=>{
         dispatch(logOut())
         localStorage.removeItem('user')
+        navigate('/login')
     }
 
   return (

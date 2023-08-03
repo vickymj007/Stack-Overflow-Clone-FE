@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addData } from '../../../redux/features/QuestionsSlice'
 import { Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { URL } from '../../../url'
+
 
 
 const AskQuestionForm = () => {
@@ -26,7 +28,7 @@ const AskQuestionForm = () => {
             askedBy:user,
             answers:[]
         }
-        axios.post("http://localhost:9000/api/questions",newQuestion)
+        axios.post(`${URL}/questions`,newQuestion)
         .then(response => response.data)
         .then(data =>{
             if(!data){

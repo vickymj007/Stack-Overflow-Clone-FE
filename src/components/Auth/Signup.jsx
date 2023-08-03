@@ -9,6 +9,7 @@ import {BsArrowsExpand} from 'react-icons/bs'
 import {RiQuestionnaireFill} from 'react-icons/ri'
 import ReCAPTCHA from 'react-google-recaptcha'
 import axios from 'axios'
+import {URL}from '../../url.js'
 
 
 const Signup = () => {
@@ -34,7 +35,7 @@ const Signup = () => {
         password
       }
 
-      axios.post("http://localhost:9000/api/users/signup",newUser)
+      axios.post(`${URL}/users/signup`,newUser)
       .then(response=> response.data)
       .then(data=>{
         if(!data){

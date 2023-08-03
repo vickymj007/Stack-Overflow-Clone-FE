@@ -2,22 +2,23 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { avatar } from './avatar'
+import { useSelector, useDispatch }from 'react-redux'
 import {AiFillCaretDown, AiFillCaretUp}from 'react-icons/ai'
+import { login } from '../../../redux/features/userSlice'
+import { URL } from '../../../url'
 
 const EditCurrentUser = () => {
     const navigate = useNavigate()
-    
-    //continue from here, think and change the way of getting current user info
+    const dispatch = useDispatch()
     
     const {user_id}= useParams()
-    const [user,setUser] = useState(null)
-
+    const {user} = useSelector(state=>state.user)
     const [openPopup,setOpenPopup]= useState(false)
 
-    const [name,setName] = useState("")
-    const [location,setLocation] = useState("")
-    const [title,setTitle] = useState("")
-    const [avatarId,setAvatarId] = useState(0)
+    const [name,setName] = useState(user.name)
+    const [location,setLocation] = useState(user.country)
+    const [title,setTitle] = useState(user.title)
+    const [avatarId,setAvatarId] = useState(user.avatar_id)
 
     const handleClick = (id)=>{
         setOpenPopup(false)
@@ -31,33 +32,30 @@ const EditCurrentUser = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        axios.put(`http://localhost:9000/api/users/${user_id}`,{
+        axios.put(`${URL}/users/${user_id}`,{
             name,
             title,
             country:location,
             avatar_id:avatarId
         })
-        .then(response=>{
-
-            console.log(response.data);
+        .then(response=>response.data)
+        .then(data=>{
+            localStorage.setItem('user',JSON.stringify(data))
+            dispatch(login(data))
+            window.scrollTo({top:0,behavior:"smooth"})
+            navigate('/current-user')
         })
         .catch(error=>console.log(error.response.data))
     }
 
     useEffect(()=>{
-
-        axios.get(`http://localhost:9000/api/users/${user_id}`)
-        .then(response =>{
-            setUser(response.data)
-            setName(response.data.name)
-            setLocation(response.data.country)
-            setTitle(response.data.title)
-            setAvatarId(response.data.avatar_id - 1)
-        })
-        .catch(error=>{
-            console.log(error.response.data);
-        })
-    },[user_id])
+        const getUser = JSON.parse(localStorage.getItem('user'))
+        if(getUser){
+            dispatch(login(getUser))
+        }else{
+            navigate('/login')
+        }
+    },[dispatch,navigate])
 
   return (
     <div>
@@ -67,7 +65,7 @@ const EditCurrentUser = () => {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Profile image</label>
-                        <img src={avatar[avatarId]} alt="Avatar" />
+                        <img src={avatar[avatarId-1]} alt="Avatar" />
                         <div className='custom-select-container'>
                             <button type='button' onClick={()=>setOpenPopup(!openPopup)}>Change Avatar 
                                 <span>
@@ -79,7 +77,7 @@ const EditCurrentUser = () => {
                                 </span></button>
                             <div className={openPopup ? "open" : ""}>
                             {avatar.map((img,index)=>(
-                                <div key={index} onClick={()=>handleClick(index)}>
+                                <div key={index} onClick={()=>handleClick(index+1)}>
                                     <img src={img} alt="Avatar"/>
                                     <span>Avatar-{index+1}</span>
                                 </div>

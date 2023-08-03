@@ -6,6 +6,7 @@ import "./users.css"
 import search_icon from '../../../assets/searchs_icon.png'
 import {avatar} from './avatar.js'
 import {Link} from 'react-router-dom'
+import { URL } from '../../../url'
 
 const Users = () => {
   const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const Users = () => {
   useEffect(()=>{
     const getUsers = async()=>{
       try {
-        const response = await axios.get("http://localhost:9000/api/users")
+        const response = await axios.get(`${URL}/users`)
         dispatch(setUsers(response.data))
       } catch (error) {
         console.log(error.response.data);

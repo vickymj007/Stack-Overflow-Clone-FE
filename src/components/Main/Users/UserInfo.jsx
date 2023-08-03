@@ -1,26 +1,22 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { avatar } from './avatar'
+import { useSelector, useDispatch }from 'react-redux'
 import { formatDistanceToNow } from 'date-fns'
 import { MdCake, MdLocationOn } from 'react-icons/md'
+import { login } from '../../../redux/features/userSlice'
 import { AiOutlineClockCircle, AiOutlineTwitter, AiFillGithub,AiFillCaretDown } from 'react-icons/ai'
 import './users.css'
 
 const UserInfo = () => {
-
-    const {user_id}= useParams()
-    const [user,setUser] = useState(null) 
+    const dispatch = useDispatch()
+    const {user} = useSelector(state=>state.user)
 
     useEffect(()=>{
-        axios.get(`http://localhost:9000/api/users/${user_id}`)
-        .then(response =>{
-            setUser(response.data)
-        })
-        .catch(error=>{
-            console.log(error.response.data);
-        })
-    },[user_id])
+        const isUser =JSON.parse(localStorage.getItem('user'))
+        if(isUser){
+            dispatch(login(isUser))
+        }
+    },[dispatch])
 
   return (
     <div className='user-info-container'>

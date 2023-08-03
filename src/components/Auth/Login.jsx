@@ -9,6 +9,7 @@ import axios from 'axios'
 import { login } from '../../redux/features/userSlice'
 import { useDispatch } from 'react-redux'
 import {toast} from 'react-toastify'
+import {URL}from '../../url.js'
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -21,7 +22,7 @@ const Login = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        axios.post("http://localhost:9000/api/users/login",{email,password})
+        axios.post(`${URL}/users/login`,{email,password})
         .then(response => response.data)
         .then(data =>{
             toast.success("Successfully logged in")
@@ -31,7 +32,6 @@ const Login = () => {
         })
         .catch(error=>{
             toast.error(error.response.data.msg)
-            console.log(error);
         })
     }
 

@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setData, addViews } from '../../../redux/features/QuestionsSlice.js'
 import {avatar} from '../Users/avatar.js'
+import { URL } from '../../../url.js'
 
 
 const QuestionsBody = () => {
@@ -14,7 +15,8 @@ const QuestionsBody = () => {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        axios.get("http://localhost:9000/api/questions")
+        window.scrollTo({top:0,behavior:"smooth"})
+        axios.get(`${URL}/questions`)
         .then(response => response.data)
         .then(data=> {
             dispatch(setData(data))
@@ -23,7 +25,7 @@ const QuestionsBody = () => {
     },[dispatch])
 
     const incViews = (id)=>{
-        axios.put(`http://localhost:9000/api/questions/${id}`,{
+        axios.put(`${URL}/questions/${id}`,{
             addViews:true,
             type:"ques"
         })
@@ -31,7 +33,7 @@ const QuestionsBody = () => {
         .then(data=>{
             dispatch(addViews({id}))
         })
-        .catch(error=>console.log(error))
+        .catch(error=>console.log(error.response.data))
     }
 
     

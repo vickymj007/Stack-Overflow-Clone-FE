@@ -8,6 +8,7 @@ import { formatDistanceToNow } from 'date-fns'
 import axios from 'axios'
 import { avatar } from '../Users/avatar.js'
 import { changeVotes, setData, updateAnswer } from '../../../redux/features/QuestionsSlice'
+import { URL } from '../../../url'
 
 
 const QuestionInfo = () => {
@@ -16,7 +17,7 @@ const QuestionInfo = () => {
 
 
   useEffect(()=>{
-    axios.get("http://localhost:9000/api/questions")
+    axios.get(`${URL}/questions`)
     .then(response => response.data)
     .then(data=> {
         dispatch(setData(data))
@@ -45,19 +46,19 @@ const QuestionInfo = () => {
       votes:0,
       user: user.name
     }
-    axios.patch(`http://localhost:9000/api/questions/${question_id}`,newAnswer)
+    axios.patch(`${URL}/questions/${question_id}`,newAnswer)
     .then(response => response.data)
     .then(data=>{
       dispatch(updateAnswer({id:question_id,answer:data}))
       setAnswer("")
     })
     .catch(error =>{
-      console.log(error);
+      toast.warn(error.response.data)
     })
   }
 
   const handleClick = (action,type,id,ans_id)=>{
-    axios.put(`http://localhost:9000/api/questions/${id}`,{
+    axios.put(`${URL}/questions/${id}`,{
       addViews:false,
       incVote: action === "+",
       decVote: action === "-",

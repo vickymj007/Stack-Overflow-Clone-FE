@@ -8,12 +8,12 @@
 .user-page-body {
     display: flex;
     gap: 16px;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
-.user-page-body p:nth-child(1){
+.user-page-body a:nth-child(1){
     color: #0074CC;
     font-size: 15px;
+    text-decoration: none;
 }
 .user-page-body p:nth-child(2){
     color: gray;
@@ -76,4 +76,182 @@
 }
 .user-page-header > div > div p:nth-child(5){
     border-right:none;
+}
+
+/* Styles for userinfo page */
+.user-info-container{
+    width: 100%;
+    padding: 24px;
+}
+.user-info-container header{
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+}
+.user-info-container header > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.user-info-container header > div > div {
+    align-self: center;
+}
+.user-info-container p,.user-info-container button{
+    color: #6A737C;
+    font-size: 13px;
+}
+.user-info-container header h2{
+    color: #232629;
+    font-size: 34px;
+    font-weight: 400;
+    margin: 4px 4px 12px;
+}
+.user-info-container header > div > div span {
+    vertical-align: middle;
+}
+.user-info-container header > div > button,
+.user-info-container header > div > div:nth-child(2) {
+    align-self:flex-start ;
+}
+.user-info-container img {
+    width: 150px;
+}
+.user-info-container header button {
+    background-color: #FFFFFF;
+    margin: 3px;
+    padding: 10px 9.6px 7px 9.6px;
+    border: 0.5px solid #a8a8a8;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.user-info-container header button:hover{
+    background-color: #f7f7f7;
+}
+.user-info-container header button span {
+    vertical-align:middle;
+}
+.user-info-container > div:nth-child(2) a{
+    padding: 6px 12px;
+    font-size: 13px;
+    color: #525960;
+    text-decoration: none;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+.user-info-container > div:nth-child(2) a:hover{
+    background-color: #f1f1f1;
+}
+.user-info-container > div:nth-child(2) a.active{
+    background-color: #f48225;
+    color: #FFFFFF;
+}
+
+/* Styles for Edit user page */
+.edit-user-container{
+    padding: 24px;
+    position: relative;
+}
+.edit-user-container h2{
+    font-size: 27px;
+    font-weight: 400;
+    padding-bottom: 15px;
+    border-bottom: 0.5px solid #a8a8a8;
+    margin-bottom: 20px;
+}
+.edit-user-container label{
+    color: #0C0D0E;
+    display: block;
+    font-weight: 500;
+    margin: 10px 0 5px 0;
+}
+.edit-user-container input{
+    width: 300px;
+    padding: 7.8px 9.1px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    outline: none;
+    border: 0.5px solid #a8a8a8;
+}
+
+.edit-user-container input:focus{
+    outline: 4px solid rgb(216, 243, 252);
+    border: 0.5px solid rgb(63, 146, 173);
+}
+.edit-user-container form{
+    border: 0.5px solid #a8a8a8;
+    border-radius: 5px;
+    padding: 24px;
+}
+
+.custom-select-container > div {
+    position: absolute;
+    height: 300px;
+    overflow-y: scroll;
+    width: 250px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 0.5px solid #a8a8a8;
+    background-color: #FFFFFF;
+    margin-top: 5px;
+    transform: scale(0);
+    transition: all 0.3s;
+}
+.custom-select-container > div.open{
+    transform: scale(1);
+}
+.custom-select-container > div >div {
+    padding: 5px;
+    cursor: pointer;
+}
+.custom-select-container > div >div:hover {
+    background-color: #f1f1f1;
+}
+.custom-select-container > div >div img{
+    vertical-align: middle;
+    width: 40px;
+    margin-right: 10px;
+}
+.custom-select-container button{
+    cursor: pointer;
+    padding: 9px;
+    background-color: #FFFFFF;
+    border: 0.5px solid #0074CC;
+    color: #0074CC;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.custom-select-container button span{
+    vertical-align: middle;
+}
+.edit-user-container form >div:nth-child(1){
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.edit-user-container form >div:last-child{
+    margin-top: 10px;
+}
+.edit-user-container form >div:last-child button{
+    padding: 9px;
+    background-color: #FFFFFF;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+.edit-user-container form >div:last-child button:nth-child(1){
+    background-color: #0074CC;
+    color: #FFFFFF;
+}
+.edit-user-container form >div:last-child button:nth-child(2){
+    color: #0074CC;
+}
+.edit-user-container form >div:last-child button:nth-child(1):hover{
+    background-color: #025ea4;
+}
+.edit-user-container form >div:last-child button:nth-child(2):hover{
+    background-color: #ddf0ff;
 }

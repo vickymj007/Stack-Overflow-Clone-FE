@@ -103,7 +103,7 @@ nav{
     background-color: #a8a8a8;
     margin: 0;
 }
-.nav-user-links >img:nth-child(1){
+.nav-user-links a >img:nth-child(1){
     width: 30px;
 }
 .nav-item:hover,

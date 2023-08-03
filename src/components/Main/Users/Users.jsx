@@ -5,11 +5,15 @@ import axios from 'axios'
 import "./users.css"
 import search_icon from '../../../assets/searchs_icon.png'
 import {avatar} from './avatar.js'
+import {Link} from 'react-router-dom'
 
 const Users = () => {
   const dispatch = useDispatch()
 
+
   const {users} = useSelector(state=>state.allUsers)
+
+
 
   useEffect(()=>{
     const getUsers = async()=>{
@@ -30,7 +34,7 @@ const Users = () => {
         <h4>Users</h4>
         <div>
           <form>
-            <img src={search_icon} alt="Search icon" className='icons search-icon'/>
+            <img  src={search_icon} alt="Search icon" className='icons search-icon'/>
             <input type='text' placeholder='Search...'/>
           </form>
           <div>
@@ -45,16 +49,13 @@ const Users = () => {
       <div className='user-page-body'>
         {users&& users.map(user=>(
           <div className='user-card' key={user._id}>
-            <img src={avatar[user.avatar_id + 1]} alt="Avatar" />
+            <img src={avatar[user.avatar_id - 1]} alt="Avatar" />
             <div>
-              <p>{user.name}</p>
-              <p>India</p>
+              <Link to={`/users/${user._id}`}>{user.name}</Link>
+              <p>{user.country}</p>
             </div>
           </div>
         ))}
-      </div>
-      <div className='user-page-footer'>
-        Footer
       </div>
     </div>
   )

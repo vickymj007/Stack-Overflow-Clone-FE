@@ -7,6 +7,12 @@ import Users from '../Users/Users'
 import Companies from '../Companies/Companies'
 import Questions from '../Questions/Questions'
 import QuestionInfo from '../Questions/QuestionInfo'
+import UserInfo from '../Users/UserInfo'
+import CurrentUser from '../Users/CurrentUser'
+import EditCurrentUser from '../Users/EditCurrentUser'
+import Activities from '../Users/Activities'
+import Saves from '../Users/Saves'
+import Profile from '../Users/Profile'
 
 const Main = () => {
 
@@ -21,6 +27,13 @@ const Main = () => {
           </Route>
           <Route path='/tags' element={<Tags/>}/>
           <Route path='/users' element={<Users/>}/>
+          <Route path='/users/:user_id' element={<UserInfo/>}/>
+          <Route path='/current-user' element={<CurrentUser/>}>
+            <Route path='profile' element={<Profile/>}/>
+            <Route path='activity' element={<Activities/>}/>
+            <Route path='saves' element={<Saves/>}/>
+            <Route path='edit/:user_id' element={<EditCurrentUser/>}/>
+          </Route>
           <Route path='/companies' element={<Companies/>}/>
         </Routes>
     </div>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import Features_Main from '../Features/FeaturesMain'
+import FeaturesMain from '../Features/FeaturesMain'
 import {Link, useNavigate, useParams} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {BiSolidDownArrow, BiSolidUpArrow} from 'react-icons/bi'
 import {ToastContainer, toast} from 'react-toastify'
 import { formatDistanceToNow } from 'date-fns'
 import axios from 'axios'
+import { avatar } from '../Users/avatar.js'
 import { changeVotes, setData, updateAnswer } from '../../../redux/features/QuestionsSlice'
 
 
@@ -108,10 +109,9 @@ const QuestionInfo = () => {
                 ))}
               </div>
               <div className='info-card'>
-                <p>asked {formatDistanceToNow(new Date(currentQuestion.createdAt),{addSuffix:true,includeSeconds:true})}</p>
+                <p>asked {formatDistanceToNow(new Date(currentQuestion.createdAt),{addSuffix:true})}</p>
                 <div>
-                  <p>{currentQuestion.askedBy.name.slice(0,1)}</p>
-                  <p>{currentQuestion.askedBy.name}</p>
+                  <p><img src={avatar[currentQuestion.askedBy.avatar_id]} alt='Avatar'/> {currentQuestion.askedBy.name}</p>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@ const QuestionInfo = () => {
             </form>
           </div>
         </div>
-        <Features_Main/>
+        <FeaturesMain/>
       </div>
     </div>
   ):

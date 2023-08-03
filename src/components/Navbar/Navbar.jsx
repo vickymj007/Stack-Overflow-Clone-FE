@@ -46,7 +46,7 @@ const Navbar = () => {
             {user ? 
                 <div className='user-login-info'>
                     <div className='nav-user-links'>
-                        <img src={avatar[user.avatar_id+1]} alt="Avatar" />
+                        <Link to='/current-user'><img src={avatar[user.avatar_id-1]} alt="Avatar" /></Link>
                     </div>
                     <div className='nav-user-links'>
                         <FaInbox/>

@@ -11,9 +11,10 @@ const QuestionsFooter = () => {
       dispatch(changePage(event.selected))
     };
 
-    {return data?
-      (<div className='questions-footer'>
-        <div>
+    return (
+      <div className='questions-footer'>
+        {data &&( 
+        <><div>
           <ReactPaginate
             breakLabel='...'
             previousLabel='Prev'
@@ -30,10 +31,9 @@ const QuestionsFooter = () => {
             <li onClick={()=>dispatch(setContetntPerPage(15))}>15</li>
             <p>per page</p>
         </ul>
-    </div>)
-    :
-    (<div></div>)
-    }
+        </>)}
+    </div>
+    )
 }
 
 export default QuestionsFooter

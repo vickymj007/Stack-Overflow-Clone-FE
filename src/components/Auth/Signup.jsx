@@ -10,6 +10,7 @@ import {RiQuestionnaireFill} from 'react-icons/ri'
 import ReCAPTCHA from 'react-google-recaptcha'
 import axios from 'axios'
 import {URL}from '../../url.js'
+import {toast} from 'react-toastify'
 
 
 const Signup = () => {
@@ -27,8 +28,6 @@ const Signup = () => {
 
     const handleSubmit = (e)=>{
       e.preventDefault()
-      console.log("clicked");
-
       const newUser = {
         name,
         email,
@@ -41,11 +40,11 @@ const Signup = () => {
         if(!data){
           throw Error("Unable to create new user")
         }
-        alert("Account created successfully, Login to continue")
+        toast.success("Account created successfully, Login to continue")
         navigate('/login')
       })
       .catch(error=>{
-        console.log(error);
+        toast.success(error.response.data)
       })
 
     }

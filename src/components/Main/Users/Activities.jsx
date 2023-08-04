@@ -2,7 +2,7 @@ import React from 'react'
 
 const Activities = () => {
   return (
-    <div>Activities</div>
+    <div>Iam still working with this route, Kindly visit after sometime..Activities</div>
   )
 }
 

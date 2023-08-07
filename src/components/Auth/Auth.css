@@ -1,4 +1,4 @@
-.login-page{
+.login-page, .forgot-password-page{
     background-color:#f1f2f3;
 }
 .login-container{
@@ -55,7 +55,8 @@
     border-radius: 5px;
     box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
 }
-.login-form input {
+.login-form input,
+.forgot-password-page button {
     width: 100%;
     border: 0.5px solid #a8a8a8;
     outline: none;
@@ -70,11 +71,13 @@
     outline: 4px solid rgb(216, 243, 252);
     border-color: rgb(63, 146, 173);
 }
-.login-form input[type="submit"]{
+.login-form input[type="submit"], 
+.forgot-password-page button{
     background-color: #0A95FF;
     color: #FFFFFF;
 }
-.login-form input[type="submit"]:hover{
+.login-form input[type="submit"]:hover,
+.forgot-password-page button:hover{
     background-color: #097ad0;
 }
 .login-form input[type="submit"]:disabled{
@@ -154,4 +157,35 @@
     margin-top: 30px;
     font-size: 13px;
     color: #343639;
+}
+
+/* Styles for Forgot password page */
+.forgot-password-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.forgot-password{
+    width: 300px;
+}
+.forgot-password p, 
+.forgot-password button,
+.forgot-password input{
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+.otp-popup > div{
+    width: fit-content;
+    margin: 0 auto;
+}
+.otp-popup > div >input{
+    width: 30px;
+    margin: 5px;
+}
+.otp-popup, .change-password-popup{
+    display: none;
+}
+.otp-popup.open,.change-password-popup.open{
+    display: block;
 }

@@ -33,6 +33,7 @@ const BodyMain = () => {
             <li>Once a user has created an account, user data will be stored in the database.</li>
             <li>User can edit their profile by clicking the profile icon in the Navbar.</li>
             <li>User can logout by clicking the hamburger menu in the navbar.</li>
+            <li>User can change their password by clicking the Forgot Password link, Server will send a OTP to the registered email address.</li>
             <li>User can use the side nav bar to navigate to different routes.</li>
             <li>User can add votes to the questions and answers, question views will be incremented everytime when the user clicks or navigate to the question info page.</li>
             <li>Once user visits the questions page, a GET request will be sent to the server, Server will send a JSON data as a response which will be then saved in the Redux Store.</li>
